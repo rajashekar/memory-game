@@ -19,11 +19,20 @@ const matchCard = target => target.className = 'card open match';
 
 const matched = (last, current) => last.className === current.className;
 const setMoves = moves => document.querySelector('.moves').textContent = moves;
+const processStarRating = () => {
+    // for every (cards.length) + 1 moves decrease star rating
+    if(moves%(cards.length+1) === 0) {
+        const stars = document.querySelectorAll('.fa-star');
+        if(stars.length) {
+            stars[stars.length - 1].className = 'fa fa-star-o';
+        }
+    }
+}
 
 const processGame = event => {
     const target = getTarget(event)
     if (target) {
-        setMoves(moves++);
+        setMoves(++moves);
         if(target.className === 'card') {
             openCard(target);
             if(lastTarget)  {
@@ -44,6 +53,8 @@ const processGame = event => {
         } else if(target.className === 'card open show') {
             closeCard(target);
         }
+
+        processStarRating();
         console.log(target);
     }
 }
