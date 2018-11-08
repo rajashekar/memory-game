@@ -18,12 +18,12 @@ const closeCard = target => {
 const matchCard = target => target.className = 'card open match';
 
 const matched = (last, current) => last.className === current.className;
-const incrementMoves = () => document.querySelector('.moves').textContent = moves++;
+const setMoves = moves => document.querySelector('.moves').textContent = moves;
 
 const processGame = event => {
     const target = getTarget(event)
     if (target) {
-        incrementMoves();
+        setMoves(moves++);
         if(target.className === 'card') {
             openCard(target);
             if(lastTarget)  {
@@ -68,6 +68,17 @@ const displayCards = () => {
     });
 }
 
+const restart = () => {
+    const openCards = document.querySelectorAll('.open');
+    openCards.forEach(card => card.className = 'card');
+    setMoves(0);
+}
+
+const setReset = () => {
+    const reset = document.querySelector('.restart');
+    reset.addEventListener('click',restart);
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 const shuffle = array => {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -92,3 +103,4 @@ const shuffle = array => {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 displayCards();
+setReset();
