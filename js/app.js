@@ -11,7 +11,10 @@ const getTarget = event => event.target.nodeName === 'I'
 
 // css manipulation methods
 const openCard = target => target.className = 'card open show';
-const closeCard = target => target.className = 'card';
+const closeCard = target => { 
+    setTimeout(() => target.className = 'card open show shake', 1000);
+    setTimeout(() => target.className = 'card', 2000);
+}
 const matchCard = target => target.className = 'card open match';
 
 const matched = (last, current) => last.className === current.className;
