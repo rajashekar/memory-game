@@ -32,7 +32,7 @@ const processDone = () => {
     if(matchsFound === cards.length) {
         document.querySelector('.container').className = 'container hide';
         const stars = document.querySelectorAll('.fa-star');
-        document.querySelector('.message').textContent = `With ${moves} and ${stars.length} Stars` ;
+        document.querySelector('.message').textContent = `With ${moves} moves and ${stars.length} Stars` ;
         document.querySelector('.finishcontainer').className = 'finishcontainer';
         const again = document.querySelector('.again');
         again.addEventListener('click', restart);
