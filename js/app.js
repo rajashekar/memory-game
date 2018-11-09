@@ -83,6 +83,13 @@ const processGame = event => {
     }
 }
 
+const removeCards = () => {
+    const unorderedList = document.querySelector('.deck');
+    while(unorderedList.firstChild) {
+        unorderedList.removeChild(unorderedList.firstChild);
+    } 
+}
+
 // to display the cards
 const displayCards = () => {
     const unorderedList = document.querySelector('.deck');
@@ -115,6 +122,9 @@ const restart = () => {
 
     // reset timer
     resetTimer();
+
+    removeCards();
+    displayCards();
 }
 
 const setReset = () => {
