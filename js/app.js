@@ -21,11 +21,21 @@ const matched = (last, current) => last.className === current.className;
 const setMoves = moves => document.querySelector('.moves').textContent = moves;
 const processStarRating = () => {
     // for every (cards.length) + 1 moves decrease star rating
-    if(moves%(cards.length+1) === 0) {
+    if(moves%(2*cards.length) === 0) {
         const stars = document.querySelectorAll('.fa-star');
         if(stars.length) {
             stars[stars.length - 1].className = 'fa fa-star-o';
         }
+    }
+}
+const processDone = () => {
+    if(matchsFound === cards.length) {
+        document.querySelector('.container').className = 'container hide';
+        const stars = document.querySelectorAll('.fa-star');
+        document.querySelector('.message').textContent = `With ${moves} and ${stars.length} Stars` ;
+        document.querySelector('.finishcontainer').className = 'finishcontainer';
+        const again = document.querySelector('.again');
+        again.addEventListener('click', restart);
     }
 }
 
@@ -55,6 +65,7 @@ const processGame = event => {
         }
 
         processStarRating();
+        processDone();
         console.log(target);
     }
 }
@@ -80,9 +91,18 @@ const displayCards = () => {
 }
 
 const restart = () => {
+    document.querySelector('.finishcontainer').className = 'finishcontainer hide';
+    document.querySelector('.container').className = 'container';
+
+    const openStars = document.querySelectorAll('.fa-star-o');
+    openStars.forEach(star => star.className = 'fa fa-star');
+
     const openCards = document.querySelectorAll('.open');
     openCards.forEach(card => card.className = 'card');
-    setMoves(0);
+
+    matchsFound = 0;
+    moves = 0;
+    setMoves(moves);
 }
 
 const setReset = () => {

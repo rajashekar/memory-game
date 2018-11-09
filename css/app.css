@@ -28,6 +28,22 @@ body {
     flex-direction: column;
 }
 
+.finishcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.congrats {
+    position: absolute;
+    top: 35%;
+}
+
+.hide {
+    display: none;
+}
+
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
