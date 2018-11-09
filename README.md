@@ -36,6 +36,9 @@ Open `index.html` in any browser (drag and drop index.html in browser)
 
 ## Screenshots
 
+### On Start
+![initial](initial.png)
+
 ### On Match
 ![match](match.png)
 
