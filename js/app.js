@@ -1,11 +1,10 @@
-/*
- * Create a list that holds all of your cards
- */
+// global variables
 const cards = ['diamond','paper-plane-o','anchor','leaf','bicycle','bomb','bolt','cube'];
 let lastTarget;
 let moves = 0;
 let matchsFound = 0;
 
+// get card target
 const getTarget = event => event.target.nodeName === 'I' 
     ? event.target.parentElement : event.target; 
 
@@ -15,10 +14,15 @@ const closeCard = target => {
     setTimeout(() => target.className = 'card open show shake', 1000);
     setTimeout(() => target.className = 'card', 2000);
 }
-const matchCard = target => target.className = 'card open match';
 
+// when card is matched
+const matchCard = target => target.className = 'card open match';
 const matched = (last, current) => last.className === current.className;
+
+// show updated moves
 const setMoves = moves => document.querySelector('.moves').textContent = moves;
+
+// change ratings based on moves
 const processStarRating = () => {
     // for every (cards.length) + 1 moves decrease star rating
     if(moves%(2*cards.length) === 0) {
@@ -28,6 +32,8 @@ const processStarRating = () => {
         }
     }
 }
+
+// when game is done
 const processDone = () => {
     if(matchsFound === cards.length) {
         document.querySelector('.container').className = 'container hide';
@@ -39,6 +45,10 @@ const processDone = () => {
     }
 }
 
+/**
+ * main processor for this game
+ * @param {*} event 
+ */
 const processGame = event => {
     const target = getTarget(event)
     if (target) {
@@ -70,12 +80,7 @@ const processGame = event => {
     }
 }
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// to display the cards
 const displayCards = () => {
     const unorderedList = document.querySelector('.deck');
     unorderedList.addEventListener('click', processGame);
@@ -90,6 +95,7 @@ const displayCards = () => {
     });
 }
 
+// when user choses to play again
 const restart = () => {
     document.querySelector('.finishcontainer').className = 'finishcontainer hide';
     document.querySelector('.container').className = 'container';
@@ -104,7 +110,6 @@ const restart = () => {
     moves = 0;
     setMoves(moves);
 }
-
 const setReset = () => {
     const reset = document.querySelector('.restart');
     reset.addEventListener('click',restart);
@@ -123,15 +128,5 @@ const shuffle = array => {
     return array;
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 displayCards();
 setReset();
