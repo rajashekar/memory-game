@@ -51,7 +51,7 @@ const processDone = () => {
  */
 const processGame = event => {
     const target = getTarget(event)
-    if (target) {
+    if (target && !target.className.startsWith('card open')) {
         if(!moves) { // on first move, start timer
             timer(); 
         }
