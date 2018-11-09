@@ -163,3 +163,7 @@ h1 {
     font-size: 68px;
     color: green;
 }
+
+.timer {
+    padding-left: 50px;
+}

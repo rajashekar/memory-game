@@ -6,7 +6,7 @@ This Project is done as part of Udacity Front end Web developer course. The purp
 
 * [Instructions](#instructions)
 * [How to play](#how-to-play)
-* [Screenshot](#screenshot)
+* [Screenshots](#screenshots)
 * [Contributing](#contributing)
 
 ## Instructions
@@ -32,10 +32,18 @@ Open `index.html` in any browser (drag and drop index.html in browser)
 - If both cards are not matched, cards will kept closed. 
 - If all 8 pairs are matched game is finished. 
 - Stars are reduced for every 16 moves.  
+- Timer starts on first move
 
-## Screenshot
+## Screenshots
 
-![screen](screen.png)
+### On Match
+![match](match.png)
+
+### On Fail
+![fail](fail.png)
+
+### Finish
+![won](won.png)
 
 ## Contributing
 

@@ -52,6 +52,9 @@ const processDone = () => {
 const processGame = event => {
     const target = getTarget(event)
     if (target) {
+        if(!moves) { // on first move, start timer
+            timer(); 
+        }
         setMoves(++moves);
         if(target.className === 'card') {
             openCard(target);
@@ -109,7 +112,11 @@ const restart = () => {
     matchsFound = 0;
     moves = 0;
     setMoves(moves);
+
+    // reset timer
+    resetTimer();
 }
+
 const setReset = () => {
     const reset = document.querySelector('.restart');
     reset.addEventListener('click',restart);
@@ -128,5 +135,34 @@ const shuffle = array => {
     return array;
 }
 
+// Timer logic from https://jsfiddle.net/Daniel_Hug/pvk6p/
+let seconds = 0, minutes = 0, hours = 0, t; 
+const startTimer = () => {
+    if(++seconds >= 60) {
+        seconds = 0;
+        if (++minutes >= 60) {
+            minutes = 0;
+            ++hours;
+        }
+    }
+    const time = document.querySelector('.time');
+    time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") 
+    + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") 
+    + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+
+const resetTimer = () => {
+    const time = document.querySelector('.time');
+    time.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+    clearTimeout(t);
+}
+
+const timer = () => {
+    t = setTimeout(startTimer, 1000);
+}
+
+// methods invoked on page load
 displayCards();
 setReset();
