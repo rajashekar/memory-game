@@ -1,6 +1,6 @@
 # Memory Game Project
 
-This Project is done as part of Udacity Front end Web developer course. The purpose of the project is to understand the concepts of Javascript and CSS. 
+The purpose of the project is to understand the concepts of Javascript and CSS. 
 
 ## Table of Contents
 
